@@ -9,25 +9,72 @@ exports = ___CSS_LOADER_API_IMPORT___(false);
 exports.push([module.id, \\".App_App__3btAC {\\\\n  font-size: 1rem;\\\\n}\\\\n.App_HelloWorld__1SR0T {\\\\n  display: inline-block;\\\\n  margin: 0;\\\\n  padding: 0;\\\\n}\\\\n\\", \\"\\"]);
 // Exports
 exports.locals = {
-	\\"App\\": \\"App_App__3btAC\\",
-	\\"HelloWorld\\": \\"App_HelloWorld__1SR0T\\"
+	\\"_a\\": \\"App_App__3btAC\\",
+	\\"_b\\": \\"App_HelloWorld__1SR0T\\"
 };
-module.exports = exports;
-",
+module.exports = exports;",
+  "// Imports
+var ___CSS_LOADER_API_IMPORT___ = require(\\"../../node_modules/css-loader/dist/runtime/api.js\\");
+exports = ___CSS_LOADER_API_IMPORT___(false);
+// Module
+exports.push([module.id, \\".Button_Button__HZTiv {\\\\n  background: #f0f0f0;\\\\n}\\\\n.Button_Text__3pWp7 {\\\\n  color: black;\\\\n}\\\\n\\", \\"\\"]);
+// Exports
+exports.locals = {
+	\\"_c\\": \\"Button_Button__HZTiv\\",
+	\\"_d\\": \\"Button_Text__3pWp7\\"
+};
+module.exports = exports;",
   "import React from \\"react\\";
 import styles from \\"./App.module.css\\";
+import Button from \\"./Button\\";
 
 function App() {
   return /*#__PURE__*/React.createElement(\\"div\\", {
-    className: styles.App
+    className: styles._a
   }, /*#__PURE__*/React.createElement(\\"h1\\", {
-    className: styles.HelloWorld
+    className: styles._b
+  }, \\"Hello World\\"), /*#__PURE__*/React.createElement(Button, {
+    className: styles._b
   }, \\"Hello World\\"));
 }
 
 export default App;",
   "var api = require(\\"!../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\\");
-            var content = require(\\"!!../../node_modules/css-loader/dist/cjs.js??ref--4-oneOf-2-1!../../node_modules/postcss-loader/src/index.js??postcss!./App.module.css\\");
+            var content = require(\\"!!../../src/loader.js!../../node_modules/css-loader/dist/cjs.js??ref--4-oneOf-2-2!../../node_modules/postcss-loader/src/index.js??postcss!./App.module.css\\");
+
+            content = content.__esModule ? content.default : content;
+
+            if (typeof content === 'string') {
+              content = [[module.id, content, '']];
+            }
+
+var options = {};
+
+options.insert = \\"head\\";
+options.singleton = false;
+
+var update = api(content, options);
+
+var exported = content.locals ? content.locals : {};
+
+
+
+module.exports = exported;",
+  "import React from \\"react\\";
+import buttonStyles from \\"./Button.module.css\\";
+
+function Button(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/React.createElement(\\"div\\", {
+    className: buttonStyles._c
+  }, /*#__PURE__*/React.createElement(\\"span\\", {
+    className: buttonStyles._d
+  }, children));
+}
+
+export default Button;",
+  "var api = require(\\"!../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js\\");
+            var content = require(\\"!!../../src/loader.js!../../node_modules/css-loader/dist/cjs.js??ref--4-oneOf-2-2!../../node_modules/postcss-loader/src/index.js??postcss!./Button.module.css\\");
 
             content = content.__esModule ? content.default : content;
 

@@ -6,6 +6,7 @@ const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent")
 const getStyleLoaders = (cssOptions, preProcessor) => {
   const loaders = [
     require.resolve("style-loader"),
+    cssOptions.modules && require.resolve("../../src/loader"),
     {
       loader: require.resolve("css-loader"),
       options: cssOptions,
@@ -73,6 +74,7 @@ export default {
                 "@babel/preset-react",
                 ["@babel/preset-env", { modules: false }],
               ],
+              plugins: [require.resolve("../../src/index.js")],
             },
           },
           {

@@ -3,7 +3,6 @@ import MemoryFs from "memory-fs";
 import config from "./fixtures/webpack.config";
 
 function compile() {
-  debugger;
   const compiler = webpack(config);
 
   compiler.outputFileSystem = new MemoryFs();
@@ -14,7 +13,7 @@ function compile() {
       resolve(
         stats
           .toJson()
-          .modules.filter(({ name }) => /App/.test(name))
+          .modules.filter(({ name }) => /(App|Button)\./.test(name))
           .map((m) => m.source)
       );
     });
