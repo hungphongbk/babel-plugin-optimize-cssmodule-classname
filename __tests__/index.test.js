@@ -1,26 +1,29 @@
-import path from "path";
 import webpack from "webpack";
 import MemoryFs from "memory-fs";
+import config from "./fixtures/webpack.config";
 
-function compile(rules) {
-  const compiler = webpack({
-    mode: "development",
-    context: __dirname,
-    entry: "./fixtures/App.js",
-    output: {
-      path: __dirname,
-      filename: "bundle.js",
-    },
-    module: { rules },
-  });
+function compile() {
+  debugger;
+  const compiler = webpack(config);
 
   compiler.outputFileSystem = new MemoryFs();
 
   return new Promise((resolve, reject) => {
     compiler.run((err, stats) => {
       if (err) reject(err);
-
-      resolve(stats.toJson().modules.map((m) => m.source));
+      resolve(
+        stats
+          .toJson()
+          .modules.filter(({ name }) => /App/.test(name))
+          .map((m) => m.source)
+      );
     });
   });
 }
+
+describe("webpack loader", () => {
+  it("should convert file", async () => {
+    const source = await compile();
+    expect(source).toMatchSnapshot();
+  }, 20000);
+});
