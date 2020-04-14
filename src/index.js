@@ -10,10 +10,13 @@ export default function ({ types, template }) {
       MemberExpression(path) {
         if (
           types.isIdentifier(path.node.object) &&
-          /([sS])tyles$/.test(path.node.object.name)
+          /([sS])tyles$/.test(path.node.object.name) &&
+          types.isIdentifier(path.node.property)
         ) {
-          const oldName = path.node.property.name;
-          path.node.property = types.identifier(this.cache.get(oldName));
+          const oldName = path.node.property.name,
+            [newName, isNew] = this.cache.get(oldName, "babel");
+          path.node.property = types.identifier(newName);
+          path.skip();
         }
       },
     },

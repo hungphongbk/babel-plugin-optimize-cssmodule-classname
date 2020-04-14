@@ -8,13 +8,16 @@ const cacheObj = new Map(),
     prefix: "_",
   });
 const cache = {
-  get(key) {
-    if (key[0] === "_") return key;
+  get(key, context) {
+    if (key[0] === "_") {
+      console.log(`${context}: existing ${key}`);
+      return [key];
+    }
     if (typeof cacheObj.get(key) === "undefined") {
       cacheObj.set(key, generate());
     }
-    console.log(key, cacheObj.get(key));
-    return cacheObj.get(key);
+    console.log(`${context}:`, key, cacheObj.get(key));
+    return [cacheObj.get(key), true];
   },
 };
 

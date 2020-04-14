@@ -14,7 +14,7 @@ function isExportLocalAssignment(node) {
 const replaceTraverse = {
   ObjectProperty(path) {
     const property = path.node.key.value,
-      newProperty = cache.get(property);
+      [newProperty] = cache.get(property, "loader");
     path.node.key = types.stringLiteral(newProperty);
   },
 };
